@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-link:hover .default-icon.active{
+  @apply hidden
+}
+
+.nav-link:hover .default-icon{
+  @apply block
+}
+
+.PhoneInputInput{
+  @apply bg-transparent focus:outline-none py-0.5
+}
+
+.swiper-scrollbar-drag{
+  @apply !bg-primary1
+}
+
+.video-preview:hover .thubmail-img,
+.intro-video:hover > img{
+  @apply scale-105
+}
+
+.banner-marquee-card:hover .verified-{
+  @apply w-[122px]
+}
+
+.banner-marquee{
+  animation: scrollVertical 30s linear infinite;
+}
+
+.banner-marquee-2{
+  animation: scrollVertical2 35s linear infinite;
+}
+
+@media (max-width: 1023px) {
+  .banner-marquee{
+    animation: scrollHorizontal2 40s linear infinite;
+  }
+}
+
+@keyframes scrollVertical2 {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes scrollVertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes scrollHorizontal2 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.designers-marquee{
+  animation: scrollHorizontal 20s linear infinite;
+}
+
+@keyframes scrollHorizontal {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-102.5%); }
+}
+
+.success-swiper .swiper-pagination .swiper-pagination-bullet{
+  @apply w-1.5 h-1 rounded-lg bg-[#7F8090] opacity-40
+}
+
+.success-swiper .swiper-pagination .swiper-pagination-bullet-active{
+  @apply bg-[#7F8090] w-4 opacity-100
+}
+
+.scroll-y-auto::-webkit-scrollbar {
+  @apply w-1
+}
+
+.scroll-y-auto::-webkit-scrollbar-track {
+  @apply rounded-xl
+}
+
+.scroll-y-auto::-webkit-scrollbar-thumb {
+  @apply bg-gray1 rounded-xl
+}
+
+.rich-text h3{
+  @apply text-2xl font-semibold text-black mb-3
+}
+
+.rich-text p{
+  @apply md:text-base text-sm text-gray3 mb-4
+}
+
+.scroll-y-hidden{
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+
+.rich-text ul{
+  @apply list-disc pl-6 md:text-base text-sm text-gray3 mb-4
+}
+
+.rich-text-bio p{
+@apply text-sm text-gray3 my-4
+}
+
+
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;}
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;}}
+
+
+
+@layer base {
+  * {
+    @apply border-border;}
+  body {
+    @apply bg-background text-foreground;}}
