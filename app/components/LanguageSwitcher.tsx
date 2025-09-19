@@ -1,68 +1,69 @@
-'use client';
+'use client'
 
-import { usePathname, useRouter } from 'next/navigation';
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid';
-import { useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation'
+import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
+import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
+import clsx from 'clsx'
+import { useLocale } from 'next-intl'
 
 const languages = [
   { code: 'en', label: 'English' },
   { code: 'ar', label: 'العربية' },
-];
+]
 
-const LanguageSwitcher = () => {
-  const locale = useLocale(); // from next-intl
-  const pathname = usePathname();
-  const router = useRouter();
+export default function LanguageSwitcher() {
+  const locale = useLocale()
+  const pathname = usePathname()
+  const router = useRouter()
 
-  const currentLang = languages.find((l) => l.code === locale) || languages[0];
+  const currentLang = languages.find((l) => l.code === locale) || languages[0]
 
   const switchLocale = (langCode: string) => {
-    if (langCode === locale) return;
+    if (langCode === locale) return
 
-    const segments = pathname.split('/');
-    segments[1] = langCode; // update the locale segment
-    const newPath = segments.join('/');
+    const segments = pathname.split('/')
+    segments[1] = langCode
+    const newPath = segments.join('/')
 
-    router.push(newPath);
-  };
+    router.push(newPath)
+  }
 
   return (
-    <div className="relative">
+    <div>
       <Listbox value={currentLang} onChange={(option) => switchLocale(option.code)}>
-        <ListboxButton className="bg-transparent text-sm rounded-md px-2 py-1 text-white outline-none cursor-pointer flex items-center gap-2">
+        <ListboxButton
+          className={clsx(
+            'relative block w-full rounded-lg bg-transparent py-1.5 pr-6 pl-3 text-left md:text-sm text-xs text-white',
+            'focus:outline-none'
+          )}
+        >
           {currentLang.label}
-          <ChevronDownIcon className="w-4 h-4 text-white" />
+          <ChevronDownIcon
+            className="pointer-events-none absolute md:top-2.5 top-1.5 right-1.5 size-4 fill-white/60"
+            aria-hidden="true"
+          />
         </ListboxButton>
-        <ListboxOptions className="absolute mt-1 w-32 rounded-md overflow-hidden bg-white shadow-lg z-50">
+
+        <ListboxOptions
+          anchor="bottom"
+          transition
+          className={clsx(
+            'rounded-xl z-50 border border-white/5 bg-white p-1 focus:outline-none',
+            'transition duration-100 ease-in data-[leave]:data-[closed]:opacity-0'
+          )}
+        >
           {languages.map((option) => (
             <ListboxOption
               key={option.code}
               value={option}
-              className={({ active, selected }) =>
-                `cursor-pointer text-sm select-none relative py-2 pl-4 pr-8 ${
-                  active ? 'bg-primary text-gray-900' : 'text-gray-900'
-                } ${selected ? 'font-semibold' : 'font-normal'}`
-              }
+              className="group text-xs flex cursor-pointer items-center gap-2 rounded-lg px-3 py-1.5 select-none data-[focus]:bg-primary"
             >
-              {({ selected }) => (
-                <>
-                  <span className={`block truncate ${selected ? 'font-semibold' : 'font-normal'}`}>
-                    {option.label}
-                  </span>
-                  {selected && (
-                    <span className="absolute inset-y-0 right-2 flex items-center text-primary1">
-                      <CheckIcon className="w-4 h-4" />
-                    </span>
-                  )}
-                </>
-              )}
+              <CheckIcon className="invisible size-4 fill-black group-data-[selected]:visible" />
+              <div className="md:text-sm text-xs text-black">{option.label}</div>
             </ListboxOption>
           ))}
         </ListboxOptions>
       </Listbox>
     </div>
-  );
-};
-
-export default LanguageSwitcher;
+  )
+}
