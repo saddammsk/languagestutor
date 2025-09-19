@@ -34,7 +34,7 @@ export default function Navbar() {
             <ul
               className={clsx(
                 'lg:flex items-center transition-all lg:overflow-hidden overflow-auto duration-300 lg:static absolute lg:left-auto z-40 lg:bg-transparent bg-black1 lg:w-auto w-full lg:top-auto top-0 lg:px-0 px-6 lg:space-y-0 space-y-4 lg:py-0 py-20 lg:h-auto h-screen',
-                toggleMenu ? 'left-0' : '-left-full'
+               toggleMenu ? 'start-0' : '-start-full'
               )}
             >
               <li>

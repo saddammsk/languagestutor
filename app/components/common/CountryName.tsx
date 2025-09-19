@@ -24,7 +24,7 @@ const CountryName: React.FC = () => {
   return (
     <div>
       {countryCode && (
-        <div className="lg:flex hidden items-center text-sm gap-1.5">
+        <div className="flex items-center text-sm gap-1.5">
           <img
             src={`https://flagcdn.com/24x18/${countryCode.toLowerCase()}.png`}
             alt={`${countryCode} flag`}
@@ -32,7 +32,7 @@ const CountryName: React.FC = () => {
             height={18}
             className="inline-block"
           />
-          <span className="text-xs font-geist">{t(countryCode)}</span>
+          <span className="text-xs lg:flex hidden font-geist">{t(countryCode)}</span>
         </div>
       )}
     </div>
