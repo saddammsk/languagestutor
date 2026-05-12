@@ -75,37 +75,34 @@ export default async function Footer() {
               <h3 className='text-base text-neutral1 mb-3'><span>{t('footer-other-courses')}</span></h3>
               <ul className='space-y-2'>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-adv-pashto')}</Link>
+                  <Link href='/courses/pashto-beginner-course' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-beginner')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-children')}</Link>
+                  <Link href='/courses/advanced-pashto-course' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-advanced')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-conv-pashto')}</Link>
+                  <Link href='/courses/professional-pashto-course' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-professional')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-writing')}</Link>
+                  <Link href='/courses/pashto-dialects-course' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-dialects')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-reading')}</Link>
+                  <Link href='/courses/pashto-mastery-program' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-mastery')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-culture')}</Link>
+                  <Link href='/courses/customized-pashto-course' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-customized')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-pashto-history')}</Link>
+                  <Link href='/courses/arabic-beginner-course' className='text-sm text-gray5 hover:text-white'>{t('footer-arabic-beginner')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-custom-pashto')}</Link>
+                  <Link href='/courses/gulf-arabic-course' className='text-sm text-gray5 hover:text-white'>{t('footer-arabic-gulf')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-urdu-grammar')}</Link>
+                  <Link href='/courses/quran-reading-and-tajweed' className='text-sm text-gray5 hover:text-white'>{t('footer-arabic-tajweed')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-arabic-course')}</Link>
-                </li>
-                <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-english-grammar')}</Link>
+                  <Link href='/courses/urdu-language-course' className='text-sm text-gray5 hover:text-white'>{t('footer-urdu-language')}</Link>
                 </li>
               </ul>
             </div>
@@ -134,16 +131,16 @@ export default async function Footer() {
               <h3 className='text-base text-neutral1 mb-3'><span>{t('footer-company')}</span></h3>
               <ul className='space-y-1'>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-mission')}</Link>
+                  <Link href='/about' className='text-sm text-gray5 hover:text-white'>{t('footer-mission')}</Link>
                 </li>
                 <li>
                   <Link href='/testimonials' className='text-sm text-gray5 hover:text-white'>{t('footer-testimonials')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-success-stories')}</Link>
+                  <Link href='/testimonials' className='text-sm text-gray5 hover:text-white'>{t('footer-success-stories')}</Link>
                 </li>
                 <li>
-                  <Link href='#' className='text-sm text-gray5 hover:text-white'>{t('footer-contact-us')}</Link>
+                  <Link href='/contact' className='text-sm text-gray5 hover:text-white'>{t('footer-contact-us')}</Link>
                 </li>
               </ul>
             </div>

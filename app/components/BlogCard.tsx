@@ -36,7 +36,7 @@ export const BlogCard = ({href, img, title,authorImage, authorName, createdAt, b
         <div className="flex items-center justify-start gap-6 pt-4 mt-auto">
         <Image src={authorImage} alt='Avatar' width={40} height={40} className='w-10 h-10 rounded-full object-cover' />
         <div className="">
-        <span className='font-semibold text-sm block'>{authorName} Michael Wong</span>
+        <span className='font-semibold text-sm block'>{authorName}</span>
         <span className='text-gray5 text-sm font-medium'>{formattedDate}</span>
         </div>
         </div>

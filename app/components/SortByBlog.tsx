@@ -7,10 +7,8 @@ import {
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
 import { useEffect, useMemo, useState } from 'react'
-import { sanityClient } from '../lib/sanity'
-import { allBlogQuery } from '../lib/queries'
 import { useGlobalContext } from '../context/GlobalContext'
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
 const sortOptions = [
   { id: 1, name: 'sort_popular' },
@@ -19,28 +17,20 @@ const sortOptions = [
 ]
 
 interface BlogItem {
+  _id: string;
   topBlog: number;
   createdAt: string;
 }
 
 export default function SortByBlog() {
   const [selected, setSelected] = useState(sortOptions[0])
-  const [Blog, setBlog] = useState<BlogItem[]>([])
   const { filteredBlog, setFilteredBlog } = useGlobalContext()
   const t = useTranslations()
-  const locale = useLocale()
-  useEffect(() => {
-    const fetchBlog = async () => {
-      const data = await sanityClient.fetch(allBlogQuery(locale).query, allBlogQuery(locale).params)
-      setBlog(data)
-    }
-    fetchBlog()
-  }, [locale])
 
   const sortedBlog = useMemo(() => {
-    if (!Blog || Blog.length === 0) return []
+    if (!filteredBlog || filteredBlog.length === 0) return []
 
-    const sorted = [...Blog]
+    const sorted = [...(filteredBlog as BlogItem[])]
 
     switch (selected.name) {
       case 'sort_popular':
@@ -54,13 +44,19 @@ export default function SortByBlog() {
       default:
         return sorted
     }
-  }, [selected, Blog])
+  }, [selected, filteredBlog])
 
   useEffect(() => {
-    if (sortedBlog.length > 0) {
+    if (selected.name === 'sort_popular') return
+    if (sortedBlog.length === 0) return
+
+    const currentIds = filteredBlog.map((item: any) => item?._id).join('|')
+    const sortedIds = sortedBlog.map((item: BlogItem) => item?._id).join('|')
+
+    if (currentIds !== sortedIds) {
       setFilteredBlog(sortedBlog)
     }
-  }, [sortedBlog, setFilteredBlog])
+  }, [selected, sortedBlog, filteredBlog, setFilteredBlog])
 
   return (
     <div className="inline-flex flex-col items-start gap-4">

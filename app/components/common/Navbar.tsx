@@ -23,9 +23,9 @@ export default function Navbar() {
           <div className="flex items-center gap-4">
             <Link href="/" className='flex items-center justify-center relative z-50'>
               <Image
-                width={185}
-                height={36}
-                className="md:w-[185px] w-[120px] object-contain h-9"
+                width={200}
+                height={44}
+                className="md:w-[200px] w-[120px] object-contain h-11"
                 src="/lang-logo.svg"
                 alt="Logo"
               />
@@ -40,11 +40,11 @@ export default function Navbar() {
               <li>
                 <CoursesDropdown />
               </li>
-              <li>
+              {/* <li>
                 <Link onClick={() => setToggleMenu(false)} href="/books" className='text-gray5 text-sm font-medium hover:text-primary py-2 px-2'>
                   {t('books')}
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link onClick={() => setToggleMenu(false)} href="/about" className='text-gray5 text-sm font-medium hover:text-primary py-2 px-2'>
                   {t('about')}
@@ -65,12 +65,12 @@ export default function Navbar() {
 
           <div className="flex items-center gap-3 relative z-50">
             <CountryName/>
-            <button
-              onClick={() => setIsOpenForm(true)}
+            <Link
+              onClick={() => setIsOpenForm(true)} href={'/contact'}
               className='text-sm hidden lg:flex text-primary1 bg-primary border border-[#fff3] font-medium transition-all duration-200 py-2.5 px-5 rounded-lg'
             >
               {t('demo_class')}
-            </button>
+            </Link>
             <LanguageSwitcher />
             <button
               onClick={() => setToggleMenu(prev => !prev)}

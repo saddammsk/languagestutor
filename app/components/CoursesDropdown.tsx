@@ -107,7 +107,7 @@ export default function CoursesDropdown() {
                 initial={{ opacity: 0, translateY: 10 }}
                 animate={{ opacity: 1, translateY: 0 }}
                 exit={{ opacity: 0, translateY: 10 }}
-                className="absolute w-full lg:max-w-[700px] bg-black2 sm:max-w-[93.5%] max-w-[88%] shadow-lg rounded-md lg:overflow-hidden overflow-y-auto border origin-top mt-1 border-black3 z-10"
+                className="absolute w-full lg:max-w-[800px] bg-black2 sm:max-w-[93.5%] max-w-[88%] shadow-lg rounded-md lg:overflow-hidden overflow-y-auto border origin-top mt-1 border-black3 z-10"
               >
                 <div className="w-full flex md:flex-row flex-col lg:max-h-max max-h-[450px]">
                   <div className="bg-black2 md:w-3/5 border-r border-black3 pt-5 md:pb-8 pb-5 px-3">
@@ -152,7 +152,7 @@ export default function CoursesDropdown() {
                         ))}
                       </div>
                       
-                      <div className="w-full">
+                      {/* <div className="w-full">
                         <h4 className='text-xs text-gray5 my-1'>{t('bundles')}</h4>
                         <ul>
                           <li>
@@ -198,7 +198,7 @@ export default function CoursesDropdown() {
                             </Link>
                           </li>
                         </ul>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 

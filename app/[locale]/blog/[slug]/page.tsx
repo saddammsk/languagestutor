@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { PrimaryLinkGradient } from "../../../components/common/PrimaryLinkGradient";
 import NewsLetterSection from "../../../components/NewsLetterSection";
 import { urlFor } from "../../../lib/sanityImage";
@@ -14,6 +14,15 @@ import { getTranslations } from "next-intl/server";
 function getLocalizedText(field: any, fallback: string, locale: string) {
   if (!field) return fallback;
   return field[locale] || fallback;
+}
+
+function getSanityImageUrl(source: any, fallback: string, width: number) {
+  if (!source) return fallback;
+  try {
+    return urlFor(source).width(width).url();
+  } catch {
+    return fallback;
+  }
 }
 
 interface PageProps {
@@ -164,15 +173,13 @@ export default async function BlogDetails({ params }: PageProps) {
             </div>
 
             <div className="w-full flex items-center justify-center">
-              {blog?.mainImage && (
-                <Image
-                  src={urlFor(blog?.mainImage).width(600).url()}
-                  width={600}
-                  height={290}
-                  alt="img"
-                  className="w-full h-auto object-cover"
-                />
-              )}
+              <Image
+                src={getSanityImageUrl(blog?.mainImage, "/logo.svg", 600)}
+                width={600}
+                height={290}
+                alt="img"
+                className="w-full h-auto object-cover"
+              />
             </div>
             <ul className="flex items-center flex-wrap md:gap-6 gap-2 md:hidden">
               <li className="flex items-center gap-2">
@@ -253,16 +260,13 @@ export default async function BlogDetails({ params }: PageProps) {
 
               <div className="w-full lg:p-6 p-3 border border-gray1 rounded-lg">
                 <div className="w-full flex md:flex-row flex-col gap-6">
-                  {blog?.writer?.image && (
-                    <Image
-                      src={urlFor(blog?.writer?.image).width(286).url()}
-                      alt="Image"
-                      
-                      width={220}
-                      height={268}
-                      className="max-w-[220px] lg:min-w-[220px] rounded-lg w-full h-auto object-cover"
-                    />
-                  )}
+                  <Image
+                    src={getSanityImageUrl(blog?.writer?.image, "/user-icon.svg", 286)}
+                    alt="Image"
+                    width={220}
+                    height={268}
+                    className="max-w-[220px] lg:min-w-[220px] rounded-lg w-full h-auto object-cover"
+                  />
                   <div className="">
                     <h4 className="text-base text-black font-medium">
                       {getLocalizedText(
@@ -385,17 +389,13 @@ export default async function BlogDetails({ params }: PageProps) {
                                 className="flex gap-3 py-2 px-2 bg-white border border-gray5/10 rounded-lg"
                                 href={`/blog/${blog.slug}`}
                               >
-                                {blog?.mainImage && (
-                                  <Image
-                                    src={urlFor(blog?.mainImage)
-                                      .width(400)
-                                      .url()}
-                                    width={100}
-                                    height={60}
-                                    className="rounded-lg object-cover"
-                                    alt="no-img"
-                                  />
-                                )}
+                                <Image
+                                  src={getSanityImageUrl(blog?.mainImage, "/logo.svg", 400)}
+                                  width={100}
+                                  height={60}
+                                  className="rounded-lg object-cover"
+                                  alt="no-img"
+                                />
                                 <div>
                                   <h4 className="text-sm leading-tight line-clamp-2 text-black1 font-medium">
                                     {getLocalizedText(

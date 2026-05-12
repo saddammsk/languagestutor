@@ -9,8 +9,8 @@ import RichText from '@/app/components/common/RichText'
 import FaqsLectures from '@/app/components/FaqsLectures'
 import { Link } from '@/i18n/navigation';
 import { PrimaryLinkGradient } from '@/app/components/common/PrimaryLinkGradient'
-import { Trans } from 'react-i18next';
 import CoursesReviews from './_components/CoursesReviews'
+import DynamicFaqs from '@/app/components/DynamicFaqs'
 
 interface Lecture {
   title: { en: string; ar: string };
@@ -26,7 +26,9 @@ interface Module {
 }
 
 
-export default function CoursesDetails({ course, frequentlyCourses, locale }: any) {
+
+
+export default function CoursesDetails({ course, frequentlyCourses }: any) {
   const t = useTranslations()
   const currentLocale = useLocale()
 
@@ -63,7 +65,18 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
 
   return reviews.map((review: any) => ({
     ...review,
-    comment: review.comment?.[locale] || review.comment?.en || ""
+    user: review.user?.[locale] || review.user?.en || review.user || "",
+    userCourse: review.userCourse?.[locale] || review.userCourse?.en || review.userCourse || "",
+    comment: review.comment?.[locale] || review.comment?.en || review.comment || "",
+  }));
+}
+function getTranslatedFaqs(faqs: any[], locale: 'en' | 'ar') {
+  if (!Array.isArray(faqs)) return [];
+
+  return faqs.map((faq: any) => ({
+    ...faq,
+    question: faq.question?.[locale] || faq.question?.en || faq.question || "",
+    answer: faq.answer?.[locale] || faq.answer?.en || faq.answer || "",
   }));
 }
 
@@ -94,10 +107,7 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
           <li>
             <Image src='/cheveron-right.svg' width={20} height={20} className='min-w-5' alt='nav icon'/>
           </li>
-          <li><a href="/courses" className='text-sm whitespace-nowrap text-gray5 font-medium'>{t('pashto_course')}</a></li>
-          <li>
-            <Image src='/cheveron-right.svg' width={20} height={20} className='min-w-5' alt='nav icon'/>
-          </li>
+          
           <li><a href="#" className='text-sm whitespace-nowrap text-primary1 font-medium'>{getTranslatedValue(course?.title, currentLocale)}</a></li>
         </ul>
         </div>
@@ -143,8 +153,8 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
             <h3 className='text-2xl text-black font-semibold mb-5'>{t('what_you_learn')}</h3>
 
             <ul className='grid sm:grid-cols-2 grid-cols-1 md:gap-4 gap-3'>
-             {course?.WhatYouLearn?.map((item:string, index: number)=>(
-                 <li key={item} className='flex items-center gap-2'>
+             {course?.WhatYouLearn?.map((item:any, index: number)=>(
+                 <li key={index} className='flex items-center gap-2'>
                  <Image src='/list_check.svg' width={20} height={20} alt='check-circle' />
                  <span className='text-base text-black'>{getTranslatedValue(item, currentLocale)} </span>
                </li>
@@ -152,7 +162,7 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
             </ul>
           </div>
           
-          <div className="w-full bg-white md:p-8 p-4 rounded-lg mb-6">
+          {/* <div className="w-full bg-white md:p-8 p-4 rounded-lg mb-6">
             <h3 className='text-2xl text-black font-semibold mb-5'>{t('top_companies_up_skill')}</h3>
             <div className="w-full grid md:grid-cols-6 items-center justify-center grid-cols-3">
               <Image src={'/medibank-logo.svg'} alt='no-img' width={100} height={58}/>
@@ -162,7 +172,7 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
               <Image src={'/zoho-icon.svg'} alt='no-img' className='-ml-5' width={70} height={58}/>
 
             </div>
-          </div>
+          </div> */}
            
           <div className="w-full bg-white md:p-8 p-4 rounded-lg mb-6">
             <div className="w-full">
@@ -171,76 +181,28 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
               </div>
             </div>
         
-          {course?.body &&
-          <>
-          <hr className="w-full my-6 bg-neutral1 border-neutral1"></hr>
-          <div className="w-full">
-            <h3 className='text-2xl text-black font-semibold mb-4'>{t('what_to_expect')}
-          </h3>
-          <div className="w-full">
-            <ul className='w-full grid sm:grid-cols-2 grid-cols-1 gap-x-8 gap-y-6'>
-              <li>
-                <div className=" flex items-center gap-3 mb-2">
-                  <Image src={'/e-learning.svg'} width={24} height={24} className='' alt="" />
-                <h4 className='md:text-lg text-base text-black font-medium'>{t('e-learning')}</h4>
+              <>
+                <hr className="w-full my-6 bg-neutral1 border-neutral1" />
+                <div className="w-full">
+                  <div className="mb-6">
+                    <h3 className="text-2xl text-black font-semibold mb-5">{getTranslatedValue(course.expectedOutcomes[0]?.title, currentLocale)}</h3>
+                    <p className="md:text-base font-normal max-w-[750px] text-sm text-gray3">{getTranslatedValue(course.expectedOutcomes[0]?.description, currentLocale)}</p>
+                  </div>
+                  <div className="w-full max-w-[700px]">
+                    <ul className="w-full grid grid-cols-1 gap-y-4">
+                      {course?.expectedOutcomes[0]?.points?.map((item:any, index: number) => (
+                        <li key={index} className='flex items-start gap-3'>
+                          <img alt="check-circle"  src="/list_check.svg" className='mt-1' /> 
+                          <div className="mb-1">
+                            <h4 className="md:text-lg text-base text-black font-medium">{getTranslatedValue(item?.title, currentLocale)}</h4>
+                          <p className="md:text-base text-sm text-gray3">{getTranslatedValue(item?.description, currentLocale)}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <p className='md:text-base text-sm text-gray3'>{t('e-learning_description')}</p>
-              </li>
-              <li>
-                <div className=" flex items-center gap-3 mb-2">
-                  <Image src={'/Expert-Led.svg'} width={24} height={24} className='' alt="" />
-                <h4 className='md:text-lg text-base text-black font-medium'>{t('industry_expert_led')}</h4>
-                </div>
-                <p className='md:text-base text-sm text-gray3'>{t('industry_expert_led_description')}</p>
-              </li>
-              <li>
-                <div className=" flex items-center gap-3 mb-2">
-                  <Image src={'/Active_Support.svg'} width={24} height={24} className='' alt="" />
-                <h4 className='md:text-lg text-base text-black font-medium'>{t('active_support')}</h4>
-                </div>
-                <p className='md:text-base text-sm text-gray3'>{t('active_support_description')}</p>
-              </li>
-              <li>
-                <div className=" flex items-center gap-3 mb-2">
-                  <Image src={'/Diverse_Community.svg'} width={24} height={24} className='' alt="" />
-                <h4 className='md:text-lg text-base text-black font-medium'>{t('diverse_community')}</h4>
-                </div>
-                <p className='md:text-base text-sm text-gray3'>{t('diverse_community_description')}</p>
-              </li>
-              <li>
-                <div className=" flex items-center gap-3 mb-2">
-                  <Image src={'/Hands-on.svg'} width={24} height={24} className='' alt="" />
-                <h4 className='md:text-lg text-base text-black font-medium'>{t('practical_hands_on')}</h4>
-                </div>
-                <p className='md:text-base text-sm text-gray3'>{t('practical_hands_on_description')}</p>
-              </li>
-              <li>
-                <div className=" flex items-center gap-3 mb-2">
-                  <Image src={'/Track_Record.svg'} width={24} height={24} className='' alt="" />
-                <h4 className='md:text-lg text-base text-black font-medium'>{t('proven_track_record')}</h4>
-                </div>
-                <p className='md:text-base text-sm text-gray3'>{t('proven_track_record_description')}</p>
-              </li>
-              <li>
-                <div className=" flex items-center gap-3 mb-2">
-                  <Image src={'/Highly_Rated.svg'} width={24} height={24} className='' alt="" />
-                <h4 className='md:text-lg text-base text-black font-medium'>{t('highly_rated')}</h4>
-                </div>
-                <p className='md:text-base text-sm text-gray3'>{t('highly_rated_description')}</p>
-              </li>
-              <li>
-                <div className=" flex items-center gap-3 mb-2">
-                  <Image src={'/Flexible_Learning.svg'} width={24} height={24} className='' alt="" />
-                <h4 className='md:text-lg text-base text-black font-medium'>{t('flexible_learning')}</h4>
-                </div>
-                <p className='md:text-base text-sm text-gray3'>{t('flexible_learning_description')}</p>
-              </li>
-            </ul>
-
-          </div>
-
-          </div>
-          </>}
+              </>
           </div> 
           
           <div className="w-full bg-white md:p-8 p-4 rounded-lg mb-6">
@@ -303,15 +265,15 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
 
           </div>
           </div>
-          <hr className='w-full bg-gray-300 border-gray-300 my-8' />
+          {/* <hr className='w-full bg-gray-300 border-gray-300 my-8' /> */}
 
-          <div className="w-full">
+          {/* <div className="w-full">
           <h3 className='text-2xl text-black font-semibold mb-5'>{t('frequently_bought_together')}</h3>
           <div className="w-full space-y-4">
              {frequentlyCourses
                 .slice(0,3)
-                ?.map((course:any) => (
-                  <Link key={course.title?.[locale] || course.title?.en} href={`/courses/${course.slug}`} className='w-full p-3 flex md:flex-row flex-col md:gap-5 gap-3 bg-white rounded-2xl transition-all duration-300 hover:drop-shadow-xl border border-neutral3'>
+                ?.map((course:any, idx:number) => (
+                  <Link key={course?.slug ?? idx} href={`/courses/${course.slug}`} className='w-full p-3 flex md:flex-row flex-col md:gap-5 gap-3 bg-white rounded-2xl transition-all duration-300 hover:drop-shadow-xl border border-neutral3'>
                   <div className="w-full">
                   <Image src={urlFor(course?.mainImage).width(426).url()} width={397} height={240} className='w-full object-cover object-center rounded-lg h-[220px]' alt={'no-img'}  />
                   </div>
@@ -342,7 +304,7 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
        
           </div>
 
-          </div>
+          </div> */}
 
           <hr className='w-full border-neutral3 my-10' />
           <div className="w-full">
@@ -433,7 +395,10 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
           </div> 
           
           <CoursesReviews course={getTranslatedReviews(course?.userReviews || [], currentLocale as 'en' | 'ar')}  locale={currentLocale as 'en' | 'ar'}/>
-
+          
+          <div className="w-full my-10">
+              <DynamicFaqs faqs={getTranslatedFaqs(course?.faqs || [], currentLocale as 'en' | 'ar')}/>
+          </div>
         </div>
 
 
@@ -450,7 +415,7 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
               </div>
             </div> 
             <div className="w-full">
-              <PrimaryLinkGradient href="#" className='w-full text-center justify-center my-6 py-3' >
+              <PrimaryLinkGradient href="/contact" className='w-full text-center justify-center my-6 py-3' >
               {t('buy_course')}
               </PrimaryLinkGradient>
              
@@ -559,7 +524,7 @@ function getTranslatedReviews(reviews: any[], locale: 'en' | 'ar') {
             <h3 className='text-base font-semibold leading-tight text-white'>{getTranslatedValue(course?.title, currentLocale)}</h3>
               <h4 className='text-2xl mx-6 font-medium text-white'><span>$</span>{course?.packages[0]?.price}</h4>
               </div>
-              <PrimaryLinkGradient href="#" className='w-fit whitespace-nowrap text-sm text-center justify-center py-2' >
+              <PrimaryLinkGradient href="/contact" className='w-fit whitespace-nowrap text-sm text-center justify-center py-2' >
               {t('buy_course')}
               </PrimaryLinkGradient>
             </div>

@@ -9,16 +9,33 @@ const ARAB_COUNTRIES = ['SA', 'AE', 'EG', 'IQ', 'JO', 'KW', 'LB', 'LY', 'MA', 'O
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname.startsWith('/en') || pathname.startsWith('/ar')) {
+  if (pathname === '/en' || pathname.startsWith('/en/')) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname.replace(/^\/en/, '') || '/';
+    const response = NextResponse.redirect(url);
+    response.cookies.set('NEXT_LOCALE', 'en', { path: '/' });
+    return response;
+  }
+
+  if (pathname.startsWith('/ar')) {
     return intlMiddleware(request);
   }
 
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
   const country = (request as NextRequest & { geo?: { country?: string } }).geo?.country || 'US';
-  const locale = ARAB_COUNTRIES.includes(country) ? 'ar' : 'en';
+  const locale =
+    cookieLocale === 'en' || cookieLocale === 'ar'
+      ? cookieLocale
+      : ARAB_COUNTRIES.includes(country)
+        ? 'ar'
+        : 'en';
+
+  if (locale === 'en') {
+    return intlMiddleware(request);
+  }
 
   const url = request.nextUrl.clone();
-  url.pathname = `/${locale}${pathname === '/' ? '' : pathname}`;
-
+  url.pathname = `/ar${pathname === '/' ? '' : pathname}`;
   return NextResponse.redirect(url);
 }
 

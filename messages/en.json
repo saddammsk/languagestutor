@@ -38,7 +38,6 @@
   "footer-english-grammar": "English Grammar",
   "footer-languages": "Languages",
   "footer-pashto-language": "Pashto Language",
-  "footer-urdu-language": "Urdu Language",
   "footer-arabic-language": "Arabic Language",
   "footer-english-language": "English Language",
   "footer-company": "Company",
@@ -49,6 +48,16 @@
   "footer-all-rights": "All rights reserved LanguagesTutor.",
   "footer-privacy-policy": "Privacy Policy",
   "footer-terms-service": "Terms of Service",
+  "footer-pashto-beginner": "Pashto Beginner Course",
+"footer-pashto-advanced": "Advanced Pashto Course",
+"footer-pashto-professional": "Professional Pashto Course",
+"footer-pashto-dialects": "Pashto Dialects Course",
+"footer-pashto-customized": "Customized Pashto Course",
+"footer-pashto-mastery": "Pashto Mastery Program",
+"footer-arabic-beginner": "Arabic Beginner Course",
+"footer-arabic-gulf": "Gulf Arabic Course",
+"footer-arabic-tajweed": "Quran Reading & Tajweed",
+"footer-urdu-language": "Urdu Language Course",
   "newsletter-heading": "Join our newsletter",
   "newsletter-desc": "Get the latest updates, exclusive offers, and more straight to your inbox!",
   "newsletter-subscribe": "Subscribe",
@@ -65,9 +74,9 @@
   "faq-q3": "How experienced are your language tutors?",
   "faq-a3": "Our tutors are certified professionals with years of teaching experience and native-level proficiency in the languages they teach.",
   "faq-q4": "What if I miss a class or need to reschedule?",
-  "faq-a4": "If you miss a class, you can easily reschedule with your tutor or access recorded sessions, depending on your course plan.",
-  "faq-q5": "What courses and products does Designership offer?",
-  "faq-a5": "We offer a variety of language courses, including Pashto, Urdu, Arabic, and English, as well as specialized products for language learners.",
+  "faq-a4": "If you miss a class, you can easily reschedule with your tutor.",
+  "faq-q5": "What courses and products does LanguagesTutor offer?",
+  "faq-a5": "We offer a variety of language courses, including Pashto, Urdu, Arabic, and English.",
   "faq-q6": "How can I assess my progress and proficiency in the language?",
   "faq-a6": "You can assess your progress through regular quizzes, assignments, and feedback from your tutor throughout the course.",
   "success-stories-title": "Success stories",
@@ -139,8 +148,8 @@
   "english": "English",
   "level": "Level",
   "beginner": "Beginner",
-  "intermediate": "Intermediate",
-  "advance": "Advance",
+  "intermediate": "Advance",
+  "advance": "Mastery",
   "suggest_course": "Suggest a course",
   "what_learn_next": "What would you like to learn next?",
   "submit_suggestion": "Submit your suggestion.",
@@ -209,7 +218,8 @@
   "message": "Message",
   "name": "Name",
   "email": "Email",
-  "phone": "Phone",
+  "phone": "Whatsapp",
+  "country": "Country",
   "subject": "Subject",
   "send_message": "Send message",
   "message_sent_successfully": "Message sent successfully",
@@ -226,13 +236,13 @@
   "ux_design_products": "UX Design Products",
   "ux_design_articles": "UX Design Articles",
 
-  "buy_course": "Buy course",
+  "buy_course": "Contact",
   "team_of": "Are you a team of 10?",
   "last_update": "Last Update:",
   "access": "Access",
   "audio": "Audio :",
   "inclusion": "Inclusion",
-  "one_time_payment": "One-time payment",
+  "one_time_payment": "Monthly",
   "would_recommend_course": "Would recommend the course",
   "new_knowledge_learnt": "New knowledge learnt",
   "ease_of_following": "Ease-of-following",
@@ -265,7 +275,7 @@
   "team_discount": "We offer a simple, single-payment method and discount for teams.",
   "what_you_learn": "What you'll learn",
   "get_touch": "Get in touch!",
-  
+
   "learning_today": "Start learning today!",
   "hours_of_content": "hours of content",
   "file_resources": "file resources",
@@ -273,7 +283,7 @@
   "own_pace": "Online at your own pace",
   "lifetime_access": "Lifetime access",
 
-    "Pagination": {
+  "Pagination": {
     "previous": "Previous",
     "next": "Next",
     "more_pages": "More pages"
@@ -472,5 +482,4 @@
     "ZM": "Zambia",
     "ZW": "Zimbabwe"
   }
-
-} 
+}

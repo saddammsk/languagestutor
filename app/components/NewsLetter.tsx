@@ -26,7 +26,7 @@ export default function NewsLetter() {
       toast.success(data.message || 'Subscription successfully!')
     } else if (data.error) {
       toast.error(data.error || 'Subscription failed!')
-      alert('❌ Subscription failed: ' + data.error);
+      alert('Subscription failed: ' + data.error);
     }
 
     setLoading(false)
@@ -47,7 +47,7 @@ export default function NewsLetter() {
         />
         <button
           type="submit"
-          className="md:w-fit w-full text-center items-center justify-center inline-flex text-neutral5 bg-primary1 hover:bg-slate-800 border border-[#fff3] font-medium transition-all duration-200 py-2.5 px-5 rounded-lg"
+          className="md:w-fit whitespace-nowrap w-full text-center items-center justify-center inline-flex text-neutral5 bg-primary1 hover:bg-slate-800 border border-[#fff3] font-medium transition-all duration-200 py-2.5 px-5 rounded-lg"
         > 
         {!loading ? 
           <span>{t('newsletter-subscribe')}</span>

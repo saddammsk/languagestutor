@@ -33,6 +33,15 @@ const BlogSection = () => {
     return fallback
   }
 
+  const getSanityImageUrl = (source: any, fallback: string) => {
+    if (!source) return fallback
+    try {
+      return urlFor(source).width(400).url()
+    } catch {
+      return fallback
+    }
+  }
+
   const totalPages = Math.ceil(filteredBlog.length / itemsPerPage)
   const startIndex = (currentPage - 1) * itemsPerPage
   const endIndex = startIndex + itemsPerPage
@@ -112,8 +121,8 @@ const BlogSection = () => {
                 <BlogCard 
                   key={blog._id}
                   href={`/blog/${blog.slug}`}
-                  img={urlFor(blog?.mainImage).width(400).url()} 
-                  authorImage={urlFor(blog?.writer?.image).width(400).url()} 
+                  img={getSanityImageUrl(blog?.mainImage, '/logo.svg')} 
+                  authorImage={getSanityImageUrl(blog?.writer?.image, '/user-icon.svg')} 
                   title={getLocalizedText(blog?.title, 'Untitled Blog')} 
                   authorName={getLocalizedText(blog?.writer?.name, 'Unknown Author')} 
                   blogCategory={getLocalizedText(blog?.blogCategory[0]?.title, 'Uncategorized')} 

@@ -38,7 +38,6 @@
   "footer-english-grammar": "قواعد الإنجليزية",
   "footer-languages": "اللغات",
   "footer-pashto-language": "لغة الباشتو",
-  "footer-urdu-language": "لغة الأردية",
   "footer-arabic-language": "لغة العربية",
   "footer-english-language": "لغة الإنجليزية",
   "footer-company": "الشركة",
@@ -49,6 +48,16 @@
   "footer-all-rights": "جميع الحقوق محفوظة LanguagesTutor.",
   "footer-privacy-policy": "سياسة الخصوصية",
   "footer-terms-service": "شروط الخدمة",
+  "footer-pashto-beginner": "دورة لغة الباشتو للمبتدئين",
+"footer-pashto-advanced": "دورة لغة الباشتو للمتقدمين",
+"footer-pashto-professional": "دورة لغة الباشتو المهنية",
+"footer-pashto-dialects": "دورة لهجات لغة الباشتو",
+"footer-pashto-customized": "دورة لغة باشتو مخصصة",
+"footer-pashto-mastery": "برنامج إتقان لغة الباشتو المتكامل",
+"footer-arabic-beginner": "دورة اللغة العربية للمبتدئين",
+"footer-arabic-gulf": "دورة اللهجة الخليجية",
+"footer-arabic-tajweed": "دورة قراءة القرآن والتجويد",
+"footer-urdu-language": "دورة اللغة الأردية",
   "newsletter-heading": "انضم إلى نشرتنا الإخبارية",
   "newsletter-desc": "احصل على آخر التحديثات والعروض الحصرية والمزيد مباشرة إلى بريدك الإلكتروني!",
   "newsletter-subscribe": "اشترك",
@@ -66,8 +75,8 @@
   "faq-a3": "مدرسونا هم محترفون معتمدون لديهم سنوات من الخبرة في التدريس وإتقان على المستوى الأصلي للغات التي يدرسونها.",
   "faq-q4": "ماذا لو فاتني فصل أو احتجت إلى إعادة الجدولة؟",
   "faq-a4": "إذا فاتك فصل، يمكنك بسهولة إعادة الجدولة مع مدرسك أو الوصول إلى الجلسات المسجلة، اعتمادًا على خطتك الدراسية.",
-  "faq-q5": "ما هي الدورات والمنتجات التي تقدمها Designership؟",
-  "faq-a5": "نحن نقدم مجموعة متنوعة من دورات اللغة، بما في ذلك الباشتو، الأردية، العربية، والإنجليزية، بالإضافة إلى منتجات متخصصة لمتعلمي اللغة.",
+  "faq-q5": "ما هي الدورات والمنتجات التي يقدمها LanguagesTutor؟",
+  "faq-a5": "نقدم مجموعة متنوعة من دورات اللغات، بما في ذلك الباشتو، والأردية، والعربية، والإنجليزية.",
   "faq-q6": "كيف يمكنني تقييم تقدمي وإتقاني للغة؟",
   "faq-a6": "يمكنك تقييم تقدمك من خلال الاختبارات الدورية، والواجبات، والتعليقات من مدرسك طوال الدورة.",
   "success-stories-title": "قصص النجاح",
@@ -139,8 +148,8 @@
   "english": "الإنجليزية",
   "level": "المستوى",
   "beginner": "مبتدئ",
-  "intermediate": "متوسط",
-  "advance": "متقدم",
+  "intermediate": "يتقدم",
+  "advance": "الإتقان",
   "suggest_course": "اقترح دورة",
   "what_learn_next": "ماذا تريد أن تتعلم بعد ذلك؟",
   "submit_suggestion": "قدم اقتراحك.",
@@ -209,7 +218,8 @@
   "message": "الرسالة",
   "name": "الاسم",
   "email": "البريد الإلكتروني",
-  "phone": "الهاتف",
+  "phone": "واتس اب",
+  "country": "البلد",
   "subject": "الموضوع",
   "send_message": "إرسال الرسالة",
   "message_sent_successfully": "تم إرسال الرسالة بنجاح",
@@ -225,13 +235,13 @@
   "ux_design_courses": "دورات تصميم تجربة المستخدم",
   "ux_design_products": "منتجات تصميم تجربة المستخدم",
   "ux_design_articles": "مقالات تصميم تجربة المستخدم",
-  "buy_course": "شراء الدورة",
+  "buy_course": "تواصل",
   "team_of": "هل أنت فريق مكون من 10 أفراد؟",
   "last_update": "آخر تحديث:",
   "access": "الوصول",
   "audio": "الصوت:",
   "inclusion": "يشمل",
-  "one_time_payment": "دفعة واحدة",
+  "one_time_payment": "شهري",
   "would_recommend_course": "سيوصي بالدورة",
   "new_knowledge_learnt": "معرفة جديدة تم تعلمها",
   "ease_of_following": "سهولة المتابعة",
@@ -271,12 +281,12 @@
   "own_pace": "عبر الإنترنت وفقًا لسرعتك الخاصة",
   "lifetime_access": "وصول مدى الحياة",
 
-    "Pagination": {
+  "Pagination": {
     "previous": "السابق",
     "next": "التالي",
     "more_pages": "المزيد من الصفحات"
   },
-  
+
   "countries": {
     "AF": "أفغانستان",
     "AL": "ألبانيا",
@@ -470,6 +480,4 @@
     "ZM": "زامبيا",
     "ZW": "زيمبابوي"
   }
-
-
 }

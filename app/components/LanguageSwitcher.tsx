@@ -1,10 +1,10 @@
 'use client'
 
-import { usePathname, useRouter } from 'next/navigation'
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 import clsx from 'clsx'
 import { useLocale } from 'next-intl'
+import { usePathname, useRouter } from '@/i18n/navigation'
 
 const languages = [
   { code: 'en', label: 'English' },
@@ -21,11 +21,7 @@ export default function LanguageSwitcher() {
   const switchLocale = (langCode: string) => {
     if (langCode === locale) return
 
-    const segments = pathname.split('/')
-    segments[1] = langCode
-    const newPath = segments.join('/')
-
-    router.push(newPath)
+    router.replace(pathname, { locale: langCode })
   }
 
   return (

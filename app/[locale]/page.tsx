@@ -33,19 +33,22 @@ export default async function Home() {
     <section className="w-full bg-no-repeat lg:pb-0 pb-6 bg-cover lg:max-h-[75vh] overflow-hidden min-h-[620px] bg-center" style={{backgroundImage: 'url("/hero-bg-1.svg")' }}>
         <div className="w-full max-w-[1340px] md:px-5 px-4 mx-auto">
           <div className="w-full flex lg:flex-row flex-col">
-          <div className="w-full max-w-[870px] lg:py-[113.44px] py-10">
-          <div className="max-w-[640px]">
-          <h1 className="md:text-40 text-32 font-bold text-neutral1">{t('main_heading')}</h1>
-          <p className="md:text-lg text-base text-gray5 lg:py-7 py-4">{t('main_paragraph')}</p>
+          <div className="w-full lg:max-w-[870px] lg:py-[113.44px] py-10">
+          <div className="lg:max-w-[640px] w-full">
+          <h1 className="md:text-40 lg:text-start text-center text-32 font-bold text-neutral1">{t('main_heading')}</h1>
+          <p className="md:text-lg lg:text-start text-centermd:text-lg lg:text-start text-center text-base text-gray5 lg:py-7 lg:px-0 sm:px-20 px-0 py-4 text-base text-gray5 lg:py-7 py-4">{t('main_paragraph')}</p>
         
           <div className="flex flex-wrap items-center lg:justify-start justify-center gap-3">
                <Link href={'/courses'} className={'inline-flex text-base text-primary1 bg-primary border border-[#fff3] font-medium transition-all duration-200 py-2.5 px-5 rounded-lg'}>       
                   <span>{t('view_courses')}</span>
                 </Link>
-           <BookDemoButton/>
+                <Link href={'/contact'} className={'text-base text-neutral3 bg-gray4 hover:bg-gray2 transition-all duration-200 border border-gray3 py-2.5 px-5 rounded-lg'}>       
+                  <span>{t('demo_class')}</span>
+                </Link>
+           {/* <BookDemoButton/> */}
           </div>
           </div>
-          <div className="w-full flex gap-3 pt-8">
+          <div className="w-full flex lg:justify-start justify-center gap-3 pt-8">
             <div className="flex items-center gap-3 bg-gray4 sm:p-4 p-2 rounded-lg">
             <Image src="/group-imgs.png" width={176} height={48} alt="group imgs" className="sm:w-[176px] w-[120px] object-contain h-auto" />
             <div className="">
@@ -116,9 +119,9 @@ export default async function Home() {
           <p className="md:text-lg text-base text-gray3"><span>{t('pashto-section-desc')}</span></p>
           </div>
           <div className="w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
-            <div className="w-full bg-white rounded-xl border border-neutral-neutral3 p-[13px]">
+            <Link href={"#"} className="w-full bg-white rounded-xl border border-neutral-neutral3 p-[13px]">
               <div className="w-full">
-                <img src="/Designership_Cover-p-1600.png" className="rounded-lg" alt="img" />
+                <img src="/Designership_Cover-p-1600.png" className="rounded-lg w-full" alt="img" />
               </div>
               <div className="w-full py-4 px-2">
                 <h4 className="text-sm text-gray3 font-semibold"><span>{t('pashto-section-card1-title')}</span></h4>
@@ -126,11 +129,11 @@ export default async function Home() {
                 <p className="text-sm text-gray3"><span>{t('pashto-section-card1-desc')}</span></p>
               </div>
 
-            </div>
+            </Link>
 
-            <div className="w-full bg-white rounded-xl border border-neutral-neutral3 p-[13px]">
+            <Link href={"#"} className="w-full bg-white rounded-xl border border-neutral-neutral3 p-[13px]">
               <div className="w-full">
-                <img src="/UX-Research-Method.png" className="rounded-lg" alt="img" />
+                <img src="/UX-Research-Method.png" className="rounded-lg w-full" alt="img" />
               </div>
               <div className="w-full py-4 px-2">
                 <h4 className="text-sm text-gray3 font-semibold"><span>{t('pashto-section-card2-title')}</span></h4>
@@ -138,11 +141,11 @@ export default async function Home() {
                 <p className="text-sm text-gray3"><span>{t('pashto-section-card2-desc')}</span></p>
               </div>
 
-            </div>
+            </Link>
 
-            <div className="w-full bg-white rounded-xl border border-neutral-neutral3 p-[13px]">
+            <Link href={"#"} className="w-full bg-white rounded-xl border border-neutral-neutral3 p-[13px]">
               <div className="w-full">
-                <img src="/Primary-Secondary-Research.png" className="rounded-lg" alt="img" />
+                <img src="/Primary-Secondary-Research.png" className="rounded-lg w-full" alt="img" />
               </div>
               <div className="w-full py-4 px-2">
                 <h4 className="text-sm text-gray3 font-semibold"><span>{t('pashto-section-card3-title')}</span></h4>
@@ -150,7 +153,7 @@ export default async function Home() {
                 <p className="text-sm text-gray3"><span>{t('pashto-section-card3-desc')}</span></p>
               </div>
 
-            </div>
+            </Link>
 
           </div>
         </div>

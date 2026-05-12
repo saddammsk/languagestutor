@@ -7,12 +7,12 @@ export default function Faqs() {
   const t = useTranslations()
   return (
     <div className="w-full md:px-4 py-10">
-      <div className="mx-auto w-full max-w-[768px] md:space-y-5 space-y-3">
+      <div className="mx-auto w-full max-w-[768px] space-y-3">
       {/* defaultOpen={true} */}
         <Disclosure as="div" >
         {({ open }) => (
         <>
-          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-neutral1 border border-neutral3 rounded-xl">
+          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-white border border-neutral3 rounded-xl">
             <span className="md:text-lg sm:text-base text-sm text-start font-semibold text-neutral2">
               <span>{t('faq-q1')}</span>
             </span>
@@ -38,7 +38,7 @@ export default function Faqs() {
         <Disclosure as="div">
         {({ open }) => (
         <>
-          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-neutral1 border border-neutral3 rounded-xl">
+          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-white border border-neutral3 rounded-xl">
             <span className="md:text-lg sm:text-base text-sm text-start font-semibold text-neutral2">
               <span>{t('faq-q2')}</span>
             </span>
@@ -63,7 +63,7 @@ export default function Faqs() {
         <Disclosure as="div">
         {({ open }) => (
         <>
-          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-neutral1 border border-neutral3 rounded-xl">
+          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-white border border-neutral3 rounded-xl">
             <span className="md:text-lg sm:text-base text-sm text-start font-semibold text-neutral2">
               <span>{t('faq-q3')}</span>
             </span>
@@ -88,7 +88,7 @@ export default function Faqs() {
         <Disclosure as="div">
         {({ open }) => (
         <>
-          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-neutral1 border border-neutral3 rounded-xl">
+          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-white border border-neutral3 rounded-xl">
             <span className="md:text-lg sm:text-base text-sm text-start font-semibold text-neutral2">
               <span>{t('faq-q4')}</span>
             </span>
@@ -113,7 +113,7 @@ export default function Faqs() {
         <Disclosure as="div">
         {({ open }) => (
         <>
-          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-neutral1 border border-neutral3 rounded-xl">
+          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-white border border-neutral3 rounded-xl">
             <span className="md:text-lg sm:text-base text-sm text-start font-semibold text-neutral2">
               <span>{t('faq-q5')}</span>
             </span>
@@ -138,7 +138,7 @@ export default function Faqs() {
         <Disclosure as="div">
         {({ open }) => (
         <>
-          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-neutral1 border border-neutral3 rounded-xl">
+          <Disclosure.Button className="group flex w-full items-center justify-between md:px-6 px-5 md:py-5 py-4 gap-2 bg-white border border-neutral3 rounded-xl">
             <span className="md:text-lg sm:text-base text-sm text-start font-semibold text-neutral2">
               <span>{t('faq-q6')}</span>
             </span>

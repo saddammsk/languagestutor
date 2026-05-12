@@ -21,6 +21,27 @@ export const allCoursesQuery = (locale: string) => ({
       title,
       "slug": slug.current
     },
+      faqs[]{
+        question,
+        answer
+      },
+      whatYouWillLearn[]{
+        title,
+        description,
+        points[]{
+          title,
+          description
+        }
+      },
+      expectedOutcomes[]{
+        title,
+        description,
+        points[]{
+          title,
+          description
+        }
+      },
+
     curriculum[]{
       title,
       description,
@@ -395,6 +416,10 @@ export const getSingleCourseQuery = (slug: string, locale: string) => ({
       languages,
       duration,
       WhatYouLearn,
+      faqs[]{
+        question,
+        answer
+      },
       "slug": slug.current,
       courseCategory[]->{
         _id,
@@ -414,6 +439,14 @@ export const getSingleCourseQuery = (slug: string, locale: string) => ({
         linkedIn,
         dribbble,
         bio
+      },
+      expectedOutcomes[]{
+        title,
+        description,
+        points[]{
+          title,
+          description
+        }
       },
       testimonialsReviews[],
       video {

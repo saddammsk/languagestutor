@@ -6,6 +6,7 @@ import { allBlogQuery, allBlogQueryFallback } from '../lib/queries'
 import { sanityClient } from '../lib/sanity'
 import { urlFor } from '../lib/sanityImage'
 import { useTranslations, useLocale } from 'next-intl'
+import Link from 'next/link'
 interface BlogPost {
   _id: string
   title: {
@@ -61,13 +62,20 @@ export default function HomeBlogSwiper() {
     }
     return fallback
   }
+
+  const getSanityImageUrl = (source: any, fallback: string, width: number) => {
+    if (!source) return fallback
+    try {
+      return urlFor(source).width(width).url()
+    } catch {
+      return fallback
+    }
+  }
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        // Try with internationalization first
         let data = await sanityClient.fetch<BlogPost[]>(allBlogQuery(locale).query, allBlogQuery(locale).params)
         
-        // If no results, try fallback query
         if (!data || data.length === 0) {
           console.log('No posts found with locale, trying fallback query...')
           data = await sanityClient.fetch<BlogPost[]>(allBlogQueryFallback().query, allBlogQueryFallback().params)
@@ -76,7 +84,6 @@ export default function HomeBlogSwiper() {
         setPosts(data || [])
       } catch (error) {
         console.error('Error fetching posts:', error)
-        // Try fallback query on error
         try {
           console.log('Trying fallback query due to error...')
           const fallbackData = await sanityClient.fetch<BlogPost[]>(allBlogQueryFallback().query, allBlogQueryFallback().params)
@@ -97,11 +104,12 @@ export default function HomeBlogSwiper() {
   const Slides = posts.map((post) => (
     <div
       key={post._id}
-      className="w-full flex flex-col h-full transition-all duration-300 hover:shadow-xl bg-white p-4 rounded-[10px] border border-neutral3 cursor-pointer"
+      className="w-full flex flex-col h-full transition-all duration-300 hover:shadow-xl bg-white p-4 rounded-[10px] border border-neutral3"
     >
+      <Link href={`/blog/${post.slug}`} className='flex flex-col h-full' aria-label={getLocalizedText(post.title, 'Blog Post Link')} >
       <div className="inline-flex items-center justify-center relative overflow-hidden h-auto w-full">
         <Image
-          src={urlFor(post?.mainImage).width(274).url()}
+          src={getSanityImageUrl(post?.mainImage, '/logo.svg', 274)}
           alt={getLocalizedText(post?.title, 'Blog Post')}
           width={274}
           height={224}
@@ -116,11 +124,11 @@ export default function HomeBlogSwiper() {
       <div className="w-full flex items-center gap-4 mt-auto">
         <div className="inline-flex items-center justify-center relative">
           <Image 
-            src={urlFor(post.writer?.image).width(48).url()} 
+            src={getSanityImageUrl(post?.writer?.image, '/user-icon.svg', 48)} 
             width={48} 
             height={48} 
             className="w-12 h-12 rounded-full" 
-            alt={getLocalizedText(post.writer?.name, 'Author')} 
+            alt={getLocalizedText(post?.writer?.name, 'Author')} 
           />
         </div>
         <div>
@@ -136,6 +144,7 @@ export default function HomeBlogSwiper() {
           </p>
         </div>
       </div>
+      </Link>
     </div>
   ))
 

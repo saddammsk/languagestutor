@@ -26,7 +26,6 @@ interface FaqsLecturesProps {
   locale: 'en' | 'ar';
 }
 
-// Helper to map raw course data into Module[]
 export function getTranslatedCurriculum(curriculum: any[], locale: 'en' | 'ar'): Module[] {
   if (!Array.isArray(curriculum)) return [];
   
@@ -51,6 +50,15 @@ export default function FaqsLectures({ curriculum = [], locale }: FaqsLecturesPr
   const [expandAll, setExpandAll] = useState(false);
   const t = useTranslations();
 
+  const getLocalizedValue = (value: any): string => {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    if (typeof value === 'object') {
+      return value?.[locale] || value?.en || value?.ar || '';
+    }
+    return '';
+  };
+
   const toggleDisclosure = (id: string) => {
     setExpandedStates(prev => ({
       ...prev,
@@ -73,7 +81,6 @@ export default function FaqsLectures({ curriculum = [], locale }: FaqsLecturesPr
 
   return (
     <div className="w-full">
-      {/* Expand All Button */}
       <div onClick={handleExpandAll} className="w-full flex items-center justify-between cursor-pointer mb-5">
         <h3 className='text-2xl text-black font-semibold mb-4'>{t('curriculum')}</h3>
         <div className="flex items-center gap-1">
@@ -86,7 +93,6 @@ export default function FaqsLectures({ curriculum = [], locale }: FaqsLecturesPr
         </div>
       </div>
 
-      {/* Summary */}
       <div className="w-full flex items-center justify-between mb-5">
         <div className="flex items-center gap-2">
           <Image src="/cf_collection.svg" width={20} height={20} alt='no-img' />
@@ -105,16 +111,14 @@ export default function FaqsLectures({ curriculum = [], locale }: FaqsLecturesPr
         </div>
       </div>
 
-      {/* Modules */}
       <div className="w-full space-y-4">
         {curriculum.map((mod, index) => {
           const moduleId = `module-${mod.id ?? index}`;
-          const moduleTitle = mod.title?.[locale] ?? mod.title?.en;
-          const moduleDesc = mod.description?.[locale] ?? mod.description?.en;
+          const moduleTitle = getLocalizedValue(mod.title);
+          const moduleDesc = getLocalizedValue(mod.description);
 
           return (
             <div key={moduleId}>
-              {/* Module Toggle */}
               <button
                 onClick={() => toggleDisclosure(moduleId)}
                 className="group flex w-full sm:flex-row flex-col gap-2 sm:items-center justify-between md:px-6 md:py-5 p-3 bg-neutral5 border border-neutral3 rounded-xl"
@@ -136,7 +140,6 @@ export default function FaqsLectures({ curriculum = [], locale }: FaqsLecturesPr
                 </div>
               </button>
 
-              {/* Module Lectures */}
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{
@@ -152,11 +155,12 @@ export default function FaqsLectures({ curriculum = [], locale }: FaqsLecturesPr
                   )}
                   <ul>
                     {mod.lectures?.map((lec, lecIdx) => {
-                      const lectureTitle = lec.title?.[locale] ?? lec.title?.en;
+                      const lectureTitle = getLocalizedValue(lec.title);
+                      console.log(lectureTitle)
                       return (
                         <li key={lec.id ?? `lec-${index}-${lecIdx}`} className='md:py-2 py-1.5'>
                           <Link href={"#"} className='flex items-center gap-3 justify-between sm:text-base text-sm text-black hover:text-primary1 font-medium'>
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-6">
                               <svg xmlns="http://www.w3.org/2000/svg" width={20} height={20} fill="none" viewBox="0 0 20 20">
                                 <path
                                   d="M13.125 8.75L17.0581 4.81694C17.4518 4.42321 18.125 4.70207 18.125 5.25888V14.7411C18.125 15.2979 17.4518 15.5768 17.0581 15.1831L13.125 11.25M3.75 15.625H11.25C12.2855 15.625 13.125 14.7855 13.125 13.75V6.25C13.125 5.21447 12.2855 4.375 11.25 4.375H3.75C2.71447 4.375 1.875 5.21447 1.875 6.25V13.75C1.875 14.7855 2.71447 15.625 3.75 15.625Z"

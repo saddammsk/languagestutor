@@ -39,45 +39,39 @@ const Asidebar = () => {
   };
 
 
-  useEffect(() => {
-    const fetchFilteredCourses = async () => {
-      const allCourses = await sanityClient.fetch(allCoursesQuery(locale).query, allCoursesQuery(locale).params);
-      
-      console.log('All courses:', allCourses); // Debug log
-      
-      const filtered = allCourses.filter((course: any) => {
-        let matchCategory = true;
-        if (selectedCategories.length > 0) {
-          const courseCategories = course.courseCategory || [];
-          const categoryNames = courseCategories.map((cat: any) => {
-            const categoryTitle = getLocalizedText(cat?.title);
-            return categoryTitle.toLowerCase();
-          });
-          
-          matchCategory = selectedCategories.some(selectedCat => 
-            categoryNames.includes(selectedCat.toLowerCase())
-          );
-        }
+useEffect(() => {
+  const fetchFilteredCourses = async () => {
+    const allCourses = await sanityClient.fetch(
+      allCoursesQuery(locale).query,
+      allCoursesQuery(locale).params,
+    );
 
-        let matchLevel = true;
-        if (selectedLevels.length > 0) {
-          const courseLevel = getLocalizedText(course.level).toLowerCase();
-          matchLevel = selectedLevels.includes(courseLevel);
-        }
+    const filtered = allCourses.filter((course: any) => {
+      let matchCategory = true;
+      if (selectedCategories.length > 0) {
+        const courseCategories = course.courseCategory || [];
+        const categoryNames = courseCategories.map((cat: any) =>
+          (cat?.title?.en || "").toLowerCase()
+        );
+        matchCategory = selectedCategories.some((selectedCat) =>
+          categoryNames.includes(selectedCat.toLowerCase())
+        );
+      }
 
-        console.log('Course:', getLocalizedText(course.title), 'Category match:', matchCategory, 'Level match:', matchLevel); // Debug log
-        
-        return matchCategory && matchLevel;
-      });
-      
-      console.log('Filtered courses:', filtered); 
-      setFilteredCourses(filtered);
-    };
-  
-    fetchFilteredCourses();
-  }, [selectedCategories, selectedLevels, locale, setFilteredCourses]);
+      let matchLevel = true;
+      if (selectedLevels.length > 0) {
+      const courseLevel = (course.level?.en || course.level || "").toLowerCase();
+        matchLevel = selectedLevels.includes(courseLevel);
+      }
 
-  
+      return matchCategory && matchLevel;
+    });
+
+    setFilteredCourses(filtered);
+  };
+
+  fetchFilteredCourses();
+}, [selectedCategories, selectedLevels, locale, setFilteredCourses]);
 
   return (
     <div>
@@ -247,13 +241,13 @@ const Asidebar = () => {
                 </label>
             </li>
             <li>
-                <label htmlFor="level-intermediate" className='flex items-center relative gap-3 text-gray3 font-medium cursor-pointer hover:bg-neutral3 rounded p-1'>
+                <label htmlFor="level-advance" className='flex items-center relative gap-3 text-gray3 font-medium cursor-pointer hover:bg-neutral3 rounded p-1'>
                 <input 
                 type="checkbox" 
-                name="intermediate" 
-                value="intermediate" 
+                name="advance" 
+                value="advance" 
                 onChange={handleLevelChange}
-                id="level-intermediate" 
+                id="level-advance" 
                 className="appearance-none peer w-5 h-5 bg-neutral1 checked:bg-primary1 border border-gray1 checked:border-neutral1 rounded"
                 />
                 <span className={`absolute ${locale === 'ar' ? 'right-2' : 'left-2'}`}><Image src={'/checbox-tick.svg'} width={12} height={12} alt='logo' /></span>
@@ -262,13 +256,13 @@ const Asidebar = () => {
                 </label>
             </li>
             <li>
-                <label htmlFor="level-advance" className='flex items-center relative gap-3 text-gray3 font-medium cursor-pointer hover:bg-neutral3 rounded p-1'>
+                <label htmlFor="level-mastery" className='flex items-center relative gap-3 text-gray3 font-medium cursor-pointer hover:bg-neutral3 rounded p-1'>
                 <input 
                 type="checkbox" 
-                name="advance" 
-                value="advance" 
+                name="mastery" 
+                value="mastery" 
                 onChange={handleLevelChange}
-                id="level-advance" 
+                id="level-mastery" 
                 className="appearance-none peer w-5 h-5 bg-neutral1 checked:bg-primary1 border border-gray1 checked:border-neutral1 rounded"
                 />
                 <span className={`absolute ${locale === 'ar' ? 'right-2' : 'left-2'}`}><Image src={'/checbox-tick.svg'} width={12} height={12} alt='logo' /></span>
